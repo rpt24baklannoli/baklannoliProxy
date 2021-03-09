@@ -138,7 +138,7 @@ app.get('/api/items/:itemId/reviews', (req, res) => {
 });
 
 // Images Service
-app.get('/item/:item_id/images', (req, res) => {
+app.get('/items/:item_id/images', (req, res) => {
   let itemID = req.params.item_id;
   axios.get(`http://${imagesIP}/items/${itemID}/images`)
     .then(function (response) {
