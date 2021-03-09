@@ -5,3 +5,5 @@ node_modules
 *.sh
 newrelic.js
 newrelic_agent.log
+proxy-get-script.js
+proxy-post-script.js

@@ -22,7 +22,8 @@ app.use('/items/:itemId', express.static('client'));
 app.get('/shopping/', (req, res) => {
   // axios.get('https://fetsy-shopping.s3-us-west-1.amazonaws.com/bundle.js')
   let itemID = req.params.itemId;
-  axios.get(`http://localhost:3004/bundle.js`)
+  // axios.get(`http://localhost:3004/bundle.js`)
+  axios.get(`http://http://13.52.16.25/:3004/bundle.js`)
     .then(function (response) {
       res.status(200).send(response.data);
     })
@@ -34,8 +35,9 @@ app.get('/shopping/', (req, res) => {
 // Shopping Service
 app.get('/shopping/items/:itemId', (req, res) => {
   let itemID = req.params.itemId;
-  axios.get(`http://localhost:3004/shopping/items/${itemID}`)
-    .then(function (response) {
+  // axios.get(`http://localhost:3004/shopping/items/${itemID}`)
+  axios.get(`http://13.52.16.25:3004/shopping/items/${itemID}`)
+  .then(function (response) {
       res.status(200).send(response.data);
     })
     .catch(function (error) {
