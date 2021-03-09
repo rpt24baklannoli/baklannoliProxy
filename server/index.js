@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 const axios = require('axios').default;
 
-// const shoppingIP = '18.222.223.190:3004';
+const shoppingIP = '13.52.16.25:3004';
 // const sellerIP = '3.21.248.149:3005';
 // const reviewsIP = '54.151.123.24:3002';
 // const imagesIP = '13.52.213.118:3006';
@@ -23,7 +23,7 @@ app.get('/shopping/', (req, res) => {
   // axios.get('https://fetsy-shopping.s3-us-west-1.amazonaws.com/bundle.js')
   let itemID = req.params.itemId;
   // axios.get(`http://localhost:3004/bundle.js`)
-  axios.get(`http://http://13.52.16.25/:3004/bundle.js`)
+  axios.get(`http://${shoppingIP}/bundle.js`)
     .then(function (response) {
       res.status(200).send(response.data);
     })
@@ -36,7 +36,7 @@ app.get('/shopping/', (req, res) => {
 app.get('/shopping/items/:itemId', (req, res) => {
   let itemID = req.params.itemId;
   // axios.get(`http://localhost:3004/shopping/items/${itemID}`)
-  axios.get(`http://13.52.16.25:3004/shopping/items/${itemID}`)
+  axios.get(`http://${shoppingIP}/shopping/items/${itemID}`)
   .then(function (response) {
       res.status(200).send(response.data);
     })
@@ -156,5 +156,5 @@ app.get('/item/:item_id/images', (req, res) => {
 */
 
 app.listen(port, () => {
-  console.log(`fetsyProxyServer listening at http://localhost:${port}`);
+  console.log(`fetsyProxyServer listening at ${port}`);
 });
