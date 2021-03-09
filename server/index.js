@@ -21,7 +21,7 @@ app.use('/items/:itemId', express.static('client'));
 app.get('/shopping/', (req, res) => {
   let itemID = req.params.itemId;
   // axios.get(`http://localhost:3004/bundle.js`)
-  axios.get(`http://${shoppingIP}/bundle.js`)
+  axios.get(`http://${shoppingIP}/items/${itemID}/bundle.js`)
     .then(function (response) {
       res.status(200).send(response.data);
     })
@@ -32,8 +32,9 @@ app.get('/shopping/', (req, res) => {
 
 // Seller Service Amazon EC2 Instance
 app.get('/seller', (req, res) => {
+  let itemID = req.params.itemId;
   console.log('hitting seller endpoint');
-  axios.get(`http://${sellerIP}/bundle.js`)
+  axios.get(`http://${sellerIP}/items/${itemID}/bundle.js`)
   // axios.get('http://localhost:3005')
     .then(function (response) {
       res.send(response.data);
@@ -45,8 +46,9 @@ app.get('/seller', (req, res) => {
 
 // Reviews Service Amazon EC2 Instance
 app.get('/reviews', (req, res) => {
+  let itemID = req.params.itemId;
   console.log('hitting seller endpoint');
-  axios.get(`http://${reviewsIP}/bundle.js`)
+  axios.get(`http://${reviewsIP}/items/${itemID}/bundle.js`)
     .then(function (response) {
       res.send(response.data);
     })
@@ -57,8 +59,9 @@ app.get('/reviews', (req, res) => {
 
 // Item Images Service Amazon EC2 Instance
 app.get('/images', (req, res) => {
+  let itemID = req.params.itemId;
   console.log('hitting images endpoint');
-  axios.get(`http://${imagesIP}/bundle.js`)
+  axios.get(`http://${imagesIP}/items/${itemID}/bundle.js`)
     .then(function (response) {
       res.send(response.data);
     })
