@@ -21,6 +21,8 @@ app.use('/items/:itemId', express.static('client'));
 app.get('/shopping/', (req, res) => {
   let itemID = req.params.itemId;
   // axios.get(`http://localhost:3004/bundle.js`)
+  console.log('hitting shopping endpoint');
+
   axios.get(`http://${shoppingIP}/items/${itemID}/bundle.js`)
     .then(function (response) {
       res.status(200).send(response.data);
@@ -47,7 +49,7 @@ app.get('/seller', (req, res) => {
 // Reviews Service Amazon EC2 Instance
 app.get('/reviews', (req, res) => {
   let itemID = req.params.itemId;
-  console.log('hitting seller endpoint');
+  console.log('hitting reviews endpoint');
   axios.get(`http://${reviewsIP}/items/${itemID}/bundle.js`)
     .then(function (response) {
       res.send(response.data);
@@ -119,6 +121,20 @@ app.get('/item/images', (req, res) => {
     .catch(function (error) {
       console.log(error);
     });
+});
+
+// Reviews Service Amazon EC2 Instance
+app.get('/api/items/:itemId/reviews', (req, res) => {
+	let itemId = req.params.itemId;
+	axios
+		.get(`http://${reviewsIP}/api/items/${itemId}/reviews`)
+		.then((response) => {
+			res.status(200).send(response.data);
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status('404');
+		});
 });
 
 // Images Service
